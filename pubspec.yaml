@@ -1,0 +1,26 @@
+name: arriva_dart
+description: SDK for Arriva
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  json_annotation: ^4.5.0
+  chopper: ^4.0.5
+  intl: ^0.17.0
+  crypto: ^3.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  json_serializable: ^6.2.0
+  build_runner: ^2.1.10
+  chopper_generator: ^4.0.5
+
+flutter:
