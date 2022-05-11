@@ -1,12 +1,14 @@
-import 'package:arriva_dart/src/dtos/departure_stations_response.dto.dart';
-import 'package:arriva_dart/src/dtos/departures_response.dto.dart';
-import 'package:arriva_dart/src/dtos/stations_response.dto.dart';
-import 'package:arriva_dart/src/utils/json_serializable_converter.dart';
+import 'package:arriva_dart/arriva_dart.dart';
 
-const Map<Type, JsonFactory> factories = {
-  DepartureStationsResponse: DepartureStationsResponse.fromJson,
-  DeparturesResponse: DeparturesResponse.fromJson,
-  StationsResponse: StationsResponse.fromJson,
-};
+void main() async {
+  final arriva = Arriva();
 
-void main() async {}
+  final stations = await arriva.getStations();
+
+  final startStation = stations[13];
+  final endStation = stations[24];
+
+  final departures = await arriva.getDepartures(startStation, endStation, DateTime.now());
+
+  final departureStations = await arriva.getDepartureStations(departures[0]);
+}

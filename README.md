@@ -19,14 +19,14 @@ and the Flutter guide for
 
 final arriva = Arriva();
 
-final stations = arriva.getStations();
+final stations = await arriva.getStations();
 
 final startStation = stations[13];
 final endStation = stations[24];
 
-final departures = arriva.getDepartures(startStation, endStation, DateTime.now());
+final departures = await arriva.getDepartures(startStation, endStation, DateTime.now());
 
-final departureStations = arriva.getDepartureStations(departures[0]);
+final departureStations = await arriva.getDepartureStations(departures[0]);
 
 ```
 
