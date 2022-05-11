@@ -38,12 +38,12 @@ class _$ArrivaService extends ArrivaService {
 
   @override
   Future<Response<List<DepartureStationsResponse>>> getDepartureStations(int id,
-      String regId, String ovrSif, int zl, int sequenceStart, int sequenceEnd) {
+      String regId, String ovrId, int zl, int sequenceStart, int sequenceEnd) {
     final $url = 'WS_ArrivaSLO_TimeTable_TimeTableDepartureStationList.aspx';
     final $params = <String, dynamic>{
       'SPOD_SIF': id,
       'REG_ISIF': regId,
-      'OVR_SIF': ovrSif,
+      'OVR_SIF': ovrId,
       'VVLN_ZL': zl,
       'ROD_ZAPZ': sequenceStart,
       'ROD_ZAPK': sequenceEnd

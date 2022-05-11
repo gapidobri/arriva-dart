@@ -1,13 +1,14 @@
 library arriva_dart;
 
-import 'dart:convert';
+export 'src/models/departure.model.dart';
+export 'src/models/station.model.dart';
+export 'src/models/departure_station.model.dart';
 
 import 'package:arriva_dart/src/models/departure.model.dart';
 import 'package:arriva_dart/src/models/departure_station.model.dart';
 import 'package:arriva_dart/src/models/station.model.dart';
+import 'package:arriva_dart/src/utils/auth_interceptor.dart';
 import 'package:chopper/chopper.dart';
-import 'package:crypto/crypto.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 import 'src/api.dart';
@@ -31,20 +32,7 @@ class Arriva {
       baseUrl: 'https://prometws.alpetour.si',
       converter: const JsonSerializableConverter(factories),
       interceptors: [
-        (Request request) {
-          final timeStamp = DateFormat('yyyyMMdHmmss').format(DateTime.now());
-          final token = md5.convert(utf8.encode('R300_VozniRed_2015$timeStamp')).toString();
-
-          final uri = Uri.parse(request.url);
-
-          final newUri = uri.replace(queryParameters: {
-            'cTimestamp': timeStamp,
-            'cToken': token,
-            'json': '1',
-          });
-
-          return request.copyWith(url: newUri.toString());
-        }
+        AuthInterceptor(),
       ],
       services: [
         ArrivaService.create(),
@@ -58,20 +46,24 @@ class Arriva {
     return response.body?.first.stations ?? [];
   }
 
-  Future<List<Departure>> getDepartures(int startId, int endId, String date) async {
-    final response = await _arrivaService.getDepartures(startId, endId, date);
+  Future<List<Departure>> getDepartures(Station start, Station end, DateTime date) async {
+    final response = await _arrivaService.getDepartures(
+      start.id,
+      end.id,
+      DateFormat('yyyy-MM-dd').format(date),
+    );
     return response.body?.first.departures ?? [];
   }
 
-  Future<List<DepartureStation>> getDepartureStations(
-    int id,
-    String regId,
-    String ovrSif,
-    int zl,
-    int sequenceStart,
-    int sequenceEnd,
-  ) async {
-    final response = await _arrivaService.getDepartureStations(id, regId, ovrSif, zl, sequenceStart, sequenceEnd);
+  Future<List<DepartureStation>> getDepartureStations(Departure departure) async {
+    final response = await _arrivaService.getDepartureStations(
+      departure.id,
+      departure.regId,
+      departure.ovrId,
+      departure.zl,
+      departure.sequenceStart,
+      departure.sequenceEnd,
+    );
     return response.body?.first.stations ?? [];
   }
 }

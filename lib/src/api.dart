@@ -24,7 +24,7 @@ abstract class ArrivaService extends ChopperService {
   Future<Response<List<DepartureStationsResponse>>> getDepartureStations(
     @Query('SPOD_SIF') int id,
     @Query('REG_ISIF') String regId,
-    @Query('OVR_SIF') String ovrSif,
+    @Query('OVR_SIF') String ovrId,
     @Query('VVLN_ZL') int zl,
     @Query('ROD_ZAPZ') int sequenceStart,
     @Query('ROD_ZAPK') int sequenceEnd,
