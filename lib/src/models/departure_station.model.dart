@@ -18,16 +18,20 @@ class DepartureStation {
     fromJson: timeOfDayFromString,
     toJson: timeOfDayToString,
   )
-  final TimeOfDay arrivalTime;
+  final TimeOfDay? arrivalTime;
 
   @JsonKey(
     name: 'ROD_IODH',
     fromJson: timeOfDayFromString,
     toJson: timeOfDayToString,
   )
-  final TimeOfDay departureTime;
+  final TimeOfDay? departureTime;
 
-  @JsonKey(name: 'ROD_STOP')
+  @JsonKey(
+    name: 'ROD_STOP',
+    fromJson: numberToBool,
+    toJson: boolToNumber,
+  )
   final bool stop;
 
   @JsonKey(name: 'ROD_LAT')

@@ -13,7 +13,7 @@ and the Flutter guide for
 
 # Dart wrapper for Arriva API
 
-## Usage
+## Usage example
 
 ```dart
 

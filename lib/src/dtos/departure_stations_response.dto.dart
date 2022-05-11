@@ -1,8 +1,6 @@
 import 'package:arriva_dart/src/models/departure_station.model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../models/departure.model.dart';
-
 part 'departure_stations_response.dto.g.dart';
 
 @JsonSerializable()

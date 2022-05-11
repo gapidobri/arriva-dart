@@ -27,14 +27,14 @@ class Departure {
     fromJson: timeOfDayFromString,
     toJson: timeOfDayToString,
   )
-  final TimeOfDay departureTime;
+  final TimeOfDay? departureTime;
 
   @JsonKey(
     name: 'ROD_IPRI',
     fromJson: timeOfDayFromString,
     toJson: timeOfDayToString,
   )
-  final TimeOfDay arrivalTime;
+  final TimeOfDay? arrivalTime;
 
   @JsonKey(name: 'ROD_CAS')
   final int travelTime;
