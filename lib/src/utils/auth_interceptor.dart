@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 class AuthInterceptor implements RequestInterceptor {
   @override
   FutureOr<Request> onRequest(Request request) {
-    final timeStamp = DateFormat('yyyyMMdHmmss').format(DateTime.now());
+    final timeStamp = DateFormat('yyyyMMddHHmmss').format(DateTime.now());
     final token = md5.convert(utf8.encode('R300_VozniRed_2015$timeStamp')).toString();
 
     final uri = Uri.parse(request.url);
